@@ -1,7 +1,35 @@
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
+import Loader from "../components/ui/Loader";
+import ErrorMessage from "../components/ui/ErrorMessage";
+
+import UserGrid from "../components/users/UserGrid";
+
+import { fetchUsers } from "../services/randomUserApi";
+
 const Home = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadUsers() {
+      try {
+        const data = await fetchUsers();
+        setUsers(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadUsers();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -9,41 +37,23 @@ const Home = () => {
       <main className="min-h-screen bg-slate-100">
         <div className="mx-auto max-w-7xl px-6 py-10">
 
-          {/* Hero Section */}
-          <section className="mb-12 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-slate-800">
+          <section className="mb-10 text-center">
+            <h2 className="text-4xl font-bold">
               Discover Random Users
             </h2>
 
-            <p className="mx-auto max-w-2xl text-slate-600">
-              Browse randomly generated user profiles. Search, filter, and
-              explore people from different countries using the FreeAPI Random
-              Users API.
+            <p className="mt-3 text-slate-500">
+              Browse random users fetched from FreeAPI.
             </p>
           </section>
 
-          {/* Statistics Cards Placeholder */}
-          <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-xl bg-white p-6 shadow">
-              <h3 className="text-lg font-semibold">Total Users</h3>
-              <p className="mt-2 text-3xl font-bold text-blue-600">100</p>
-            </div>
+          {loading && <Loader />}
 
-            <div className="rounded-xl bg-white p-6 shadow">
-              <h3 className="text-lg font-semibold">Male</h3>
-              <p className="mt-2 text-3xl font-bold text-blue-600">50</p>
-            </div>
+          {error && <ErrorMessage message={error} />}
 
-            <div className="rounded-xl bg-white p-6 shadow">
-              <h3 className="text-lg font-semibold">Female</h3>
-              <p className="mt-2 text-3xl font-bold text-pink-500">50</p>
-            </div>
-
-            <div className="rounded-xl bg-white p-6 shadow">
-              <h3 className="text-lg font-semibold">Countries</h3>
-              <p className="mt-2 text-3xl font-bold text-green-600">25</p>
-            </div>
-          </section>
+          {!loading && !error && (
+            <UserGrid users={users} />
+          )}
         </div>
       </main>
 
