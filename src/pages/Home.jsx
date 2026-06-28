@@ -38,8 +38,8 @@ const Home = () => {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 py-10">
+      <main className="min-h-screen bg-gradient-to-b from-cyan-50 via-white to-slate-50">
+        <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-10">
           <Hero />
 
           <StatsSection />

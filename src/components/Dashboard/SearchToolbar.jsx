@@ -2,9 +2,8 @@ import { FiSearch, FiRefreshCw } from "react-icons/fi";
 
 const SearchToolbar = () => {
   return (
-    <section className="mb-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="mb-12 rounded-2xl border border-cyan-100 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-
         {/* Search Input */}
         <div className="relative w-full lg:max-w-md">
           <FiSearch
@@ -15,24 +14,23 @@ const SearchToolbar = () => {
           <input
             type="text"
             placeholder="Search users by name or email..."
-            className="w-full rounded-xl border border-slate-200 py-3 pl-12 pr-4 outline-none transition-all duration-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+            className="w-full rounded-xl border border-cyan-200 bg-cyan-50 py-3 pl-12 pr-4 text-slate-700 placeholder-slate-400 outline-none transition-all duration-300 focus:border-cyan-500 focus:bg-white focus:ring-4 focus:ring-cyan-100"
           />
         </div>
 
         {/* Controls */}
         <div className="flex flex-wrap gap-3">
-
-          <select className="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-blue-500">
+          <select className="rounded-xl border border-cyan-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 cursor-pointer hover:border-cyan-300">
             <option>Gender</option>
             <option>Male</option>
             <option>Female</option>
           </select>
 
-          <select className="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-blue-500">
+          <select className="rounded-xl border border-cyan-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 cursor-pointer hover:border-cyan-300">
             <option>Country</option>
           </select>
 
-          <select className="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-blue-500">
+          <select className="rounded-xl border border-cyan-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all duration-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 cursor-pointer hover:border-cyan-300">
             <option>Sort</option>
             <option>Name (A-Z)</option>
             <option>Name (Z-A)</option>
@@ -40,15 +38,11 @@ const SearchToolbar = () => {
             <option>Age ↓</option>
           </select>
 
-          <button
-            className="flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-medium text-white transition hover:bg-blue-700"
-          >
+          <button className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-600 px-5 py-3 font-medium text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:scale-95">
             <FiRefreshCw size={18} />
             Refresh
           </button>
-
         </div>
-
       </div>
     </section>
   );
