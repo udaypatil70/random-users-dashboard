@@ -9,6 +9,7 @@ import ErrorMessage from "../components/ui/ErrorMessage";
 import UserGrid from "../components/users/UserGrid";
 
 import { fetchUsers } from "../services/randomUserApi";
+import StatsSection from "../components/dashboard/StatsSection";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -36,24 +37,25 @@ const Home = () => {
 
       <main className="min-h-screen bg-slate-100">
         <div className="mx-auto max-w-7xl px-6 py-10">
-
-          <section className="mb-10 text-center">
-            <h2 className="text-4xl font-bold">
+          <section className="mb-12 text-center">
+            <h2 className="mb-4 text-4xl font-bold text-slate-800">
               Discover Random Users
             </h2>
 
-            <p className="mt-3 text-slate-500">
-              Browse random users fetched from FreeAPI.
+            <p className="mx-auto max-w-2xl text-slate-600">
+              Browse randomly generated user profiles. Search, filter, and
+              explore people from different countries using the FreeAPI Random
+              Users API.
             </p>
           </section>
+
+          <StatsSection />
 
           {loading && <Loader />}
 
           {error && <ErrorMessage message={error} />}
 
-          {!loading && !error && (
-            <UserGrid users={users} />
-          )}
+          {!loading && !error && <UserGrid users={users} />}
         </div>
       </main>
 
