@@ -12,6 +12,7 @@ import ErrorMessage from "../components/ui/ErrorMessage";
 import UserGrid from "../components/users/UserGrid";
 
 import { fetchUsers } from "../services/randomUserApi";
+import SearchToolbar from "../components/dashboard/SearchToolbar";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -39,26 +40,18 @@ const Home = () => {
 
       <main className="min-h-screen bg-slate-50">
         <div className="mx-auto max-w-7xl px-6 py-10">
-          {/* Hero Section */}
           <Hero />
 
-          {/* Dashboard Statistics */}
           <StatsSection />
 
-          {/* Search Toolbar (Coming Next) */}
-          {/* <SearchToolbar /> */}
+          <SearchToolbar />
 
-          {/* Content */}
           <section className="mt-10">
             {loading && <Loader />}
 
-            {!loading && error && (
-              <ErrorMessage message={error} />
-            )}
+            {!loading && error && <ErrorMessage message={error} />}
 
-            {!loading && !error && (
-              <UserGrid users={users} />
-            )}
+            {!loading && !error && <UserGrid users={users} />}
           </section>
         </div>
       </main>

@@ -1,42 +1,95 @@
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiUser,
+  FiArrowRight,
+} from "react-icons/fi";
+
 const UserCard = ({ user }) => {
   return (
-    <div className="rounded-xl bg-white p-5 shadow transition hover:-translate-y-1 hover:shadow-lg">
-      <img
-        src={user.picture.large}
-        alt={user.name.first}
-        className="mx-auto h-28 w-28 rounded-full object-cover"
-      />
+    <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+      {/* Cover */}
+      <div className="h-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600" />
 
-      <h3 className="mt-4 text-center text-xl font-bold">
-        {user.name.first} {user.name.last}
-      </h3>
+      {/* Avatar */}
+      <div className="-mt-12 flex justify-center">
+        <img
+          src={user.picture.large}
+          alt={`${user.name.first} ${user.name.last}`}
+          className="h-24 w-24 rounded-full border-4 border-white object-cover shadow-md"
+        />
+      </div>
 
-      <p className="mt-2 text-center text-slate-500">
-        {user.email}
-      </p>
+      {/* Name */}
+      <div className="px-6 pt-4 text-center">
+        <h3 className="text-xl font-bold text-slate-800">
+          {user.name.first} {user.name.last}
+        </h3>
 
-      <div className="mt-5 space-y-2 text-sm">
-        <p>
-          <strong>Gender:</strong> {user.gender}
-        </p>
-
-        <p>
-          <strong>Phone:</strong> {user.phone}
-        </p>
-
-        <p>
-          <strong>Country:</strong> {user.location.country}
-        </p>
-
-        <p>
-          <strong>Age:</strong> {user.dob.age}
+        <p className="mt-1 flex items-center justify-center gap-2 text-sm text-slate-500">
+          <FiMail />
+          {user.email}
         </p>
       </div>
 
-      <button className="mt-6 w-full rounded-lg bg-blue-600 py-2 text-white transition hover:bg-blue-700">
-        View Profile
-      </button>
-    </div>
+      {/* Divider */}
+      <div className="my-5 border-t border-slate-100" />
+
+      {/* Details */}
+      <div className="space-y-4 px-6 text-sm">
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-2 text-slate-500">
+            <FiUser />
+            Gender
+          </span>
+
+          <span className="font-semibold capitalize text-slate-800">
+            {user.gender}
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-2 text-slate-500">
+            🎂 Age
+          </span>
+
+          <span className="font-semibold text-slate-800">
+            {user.dob.age} Years
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-2 text-slate-500">
+            <FiPhone />
+            Phone
+          </span>
+
+          <span className="font-semibold text-slate-800">
+            {user.phone}
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-2 text-slate-500">
+            <FiMapPin />
+            Country
+          </span>
+
+          <span className="font-semibold text-slate-800">
+            {user.location.country}
+          </span>
+        </div>
+      </div>
+
+      {/* Button */}
+      <div className="p-6">
+        <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-semibold text-white transition-all duration-300 hover:bg-blue-700">
+          View Profile
+          <FiArrowRight />
+        </button>
+      </div>
+    </article>
   );
 };
 
