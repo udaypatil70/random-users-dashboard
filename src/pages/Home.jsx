@@ -13,11 +13,14 @@ import UserGrid from "../components/users/UserGrid";
 
 import { fetchUsers } from "../services/randomUserApi";
 import SearchToolbar from "../components/dashboard/SearchToolbar";
+import UserModal from "../components/users/UserModal";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -34,6 +37,15 @@ const Home = () => {
     loadUsers();
   }, []);
 
+  const openProfile = (user) => {
+    setSelectedUser(user);
+    setIsModalOpen(true);
+  };
+
+  const closeProfile = () => {
+    setSelectedUser(null);
+    setIsModalOpen(false);
+  };
   return (
     <>
       <Navbar />
@@ -57,6 +69,10 @@ const Home = () => {
       </main>
 
       <Footer />
+      <UserModal 
+       user={selectedUser} 
+       isOpen={isModalOpen} 
+       onClose={closeProfile} />
     </>
   );
 };

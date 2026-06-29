@@ -84,9 +84,11 @@ const UserCard = ({ user }) => {
 
       {/* Button */}
       <div className="px-6 pb-6">
-        <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-600 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:scale-95">
+        <button
+          onClick={() => onViewProfile(user)}
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+        >
           View Profile
-          <FiArrowRight size={18} />
         </button>
       </div>
     </article>

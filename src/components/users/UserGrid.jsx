@@ -1,10 +1,14 @@
 import UserCard from "./UserCard";
 
-const UserGrid = ({ users }) => {
+const UserGrid = ({ users, onViewProfile }) => {
   return (
-    <section className="w-full grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <section className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {users.map((user) => (
-        <UserCard key={user.login.uuid} user={user} />
+        <UserCard
+          key={user.login.uuid}
+          user={user}
+          onViewProfile={onViewProfile}
+        />
       ))}
     </section>
   );
